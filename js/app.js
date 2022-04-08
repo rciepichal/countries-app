@@ -4,6 +4,7 @@ const apiSearch = 'https://restcountries.com/v3.1/name/';
 const countriesWrapper = document.querySelector('#countries-wrapper');
 const searchButton = document.querySelector('#search-country');
 const form = document.querySelector('form');
+const button = document.querySelector('#input-submit');
 
 // Class
 
@@ -49,8 +50,18 @@ searchButton.addEventListener('keypress', (e) => {
     searchButton.value = '';
   }
 });
-
+button.addEventListener('click', (e) => {
+  const query = searchButton.value;
+  downloadCountryAPI(query);
+  searchButton.value = '';
+});
 // Functions
+const countryNotFound = () => {
+  eraseData();
+  const noText = document.createElement('h2');
+  noText.innerText = 'Country not found, try again!';
+  countriesWrapper.append(noText);
+};
 
 const downloadCountryAPI = (query) => {
   fetch(apiSearch + query)
@@ -58,7 +69,7 @@ const downloadCountryAPI = (query) => {
     .then((data) => {
       createCountryData(data);
     })
-    .catch((error) => console.log(error));
+    .catch(() => countryNotFound());
 };
 
 const eraseData = () => (countriesWrapper.innerHTML = '');
