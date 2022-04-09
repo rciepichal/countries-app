@@ -5,6 +5,8 @@ const countriesWrapper = document.querySelector('#countries-wrapper');
 const searchButton = document.querySelector('#search-country');
 const form = document.querySelector('form');
 const button = document.querySelector('#input-submit');
+const modalDiv = document.querySelector('.modal');
+const modalDivX = document.querySelector('.modal i');
 
 // Class
 
@@ -43,14 +45,20 @@ class newEntry {
 
 form.addEventListener('submit', (e) => e.preventDefault());
 
+modalDivX.addEventListener('click', () => {
+  modalDiv.classList.remove('visible');
+});
+
 searchButton.addEventListener('keypress', (e) => {
   if (e.keyCode === 13) {
+    modalDiv.classList.remove('visible');
     const query = searchButton.value;
     downloadCountryAPI(query);
     searchButton.value = '';
   }
 });
-button.addEventListener('click', (e) => {
+button.addEventListener('click', () => {
+  modalDiv.classList.remove('visible');
   const query = searchButton.value;
   downloadCountryAPI(query);
   searchButton.value = '';
@@ -58,9 +66,10 @@ button.addEventListener('click', (e) => {
 // Functions
 const countryNotFound = () => {
   eraseData();
-  const noText = document.createElement('h2');
-  noText.innerText = 'Country not found, try again!';
-  countriesWrapper.append(noText);
+  modalDiv.classList.add('visible');
+  // const noText = document.createElement('h2');
+  // noText.innerText = 'Country not found, try again!';
+  // countriesWrapper.append(noText);
 };
 
 const downloadCountryAPI = (query) => {

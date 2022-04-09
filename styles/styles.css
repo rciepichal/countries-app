@@ -8,6 +8,10 @@
 
 body {
   background-color: #fafafa;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
 }
 
 .header {
@@ -24,6 +28,32 @@ body {
   letter-spacing: 1px;
 }
 
+.main {
+  position: relative;
+}
+.main .modal {
+  display: none;
+  transition: all 0.5s ease;
+  position: relative;
+  padding: 3rem;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.main .modal i {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}
+.main .modal.visible {
+  display: flex;
+  -webkit-animation: modalOpen 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.27) 1;
+          animation: modalOpen 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.27) 1;
+}
 .main .search {
   display: flex;
   justify-content: center;
@@ -128,4 +158,30 @@ body {
 .main .countries-wrapper .country #all {
   grid-area: all;
   text-align: left;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+@-webkit-keyframes modalOpen {
+  from {
+    opacity: 0;
+    top: 0;
+  }
+  to {
+    opacity: 1;
+    top: 120%;
+  }
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+    top: 0;
+  }
+  to {
+    opacity: 1;
+    top: 120%;
+  }
 }/*# sourceMappingURL=styles.css.map */
