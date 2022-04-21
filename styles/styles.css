@@ -12,6 +12,7 @@ body {
   height: 100vh;
   display: flex;
   flex-flow: column;
+  overflow-x: hidden;
 }
 
 .header {
@@ -21,6 +22,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 20px 0;
 }
 .header h1 {
   color: #fafafa;
@@ -29,9 +32,11 @@ body {
 }
 
 .main {
+  width: 100%;
   position: relative;
 }
 .main .modal {
+  text-align: center;
   display: none;
   transition: all 0.5s ease;
   position: relative;
@@ -67,9 +72,11 @@ body {
 }
 .main .search-form label {
   padding: 1rem;
+  text-align: center;
 }
 .main .search-form .input-group {
   display: flex;
+  justify-content: center;
 }
 .main .search-form .input-group input {
   text-align: center;
@@ -140,12 +147,15 @@ body {
   align-items: center;
   flex-flow: column wrap;
   grid-area: name;
+  text-align: center;
 }
 .main .countries-wrapper .country .coa {
   display: flex;
   justify-content: center;
   align-items: center;
   grid-area: coa;
+  max-width: 70%;
+  justify-self: center;
 }
 .main .countries-wrapper .country .coa img {
   max-width: 80%;
@@ -162,6 +172,17 @@ body {
 
 .footer {
   margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #07689f;
+  padding: 10px 0;
+  color: #fafafa;
+}
+.footer a {
+  color: #a2d5f2;
+  text-decoration: none;
 }
 
 @-webkit-keyframes modalOpen {
@@ -183,5 +204,62 @@ body {
   to {
     opacity: 1;
     top: 120%;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .main .search .search-form {
+    margin: 0.5rem;
+  }
+  .main .search .search-form .input-group input {
+    width: 60%;
+  }
+  .main .search .search-form .input-group button {
+    padding: 0.1rem 1rem;
+  }
+  .main .countries-wrapper .country {
+    padding-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    display: grid;
+    background-color: #a2d5f2;
+    grid-template-columns: repeat(3, 1fr);
+    justify-self: center;
+    grid-template-rows: 120px repeat(2, auto);
+    grid-template-areas: "flag name coa " "geo geo geo" "all all all";
+  }
+  .main .countries-wrapper .country .coa {
+    justify-self: center;
+  }
+  .main .countries-wrapper .country #geo,
+.main .countries-wrapper .country #all {
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .main .countries-wrapper .country {
+    padding-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    display: grid;
+    background-color: #a2d5f2;
+    grid-template-columns: 1fr;
+    justify-self: center;
+    grid-template-rows: 120px repeat(2, auto);
+    grid-template-areas: "flag" "name" "geo" "all" "coa";
+  }
+  .main .countries-wrapper .country .country-name {
+    padding: 15px 5px;
+  }
+  .main .countries-wrapper .country .country-name h3 {
+    padding-bottom: 5px;
+  }
+  .main .countries-wrapper .country .flag-wrapper {
+    margin-top: 10px;
+  }
+  .main .countries-wrapper .country .coa {
+    justify-self: center;
+  }
+  .main .countries-wrapper .country #geo,
+.main .countries-wrapper .country #all {
+    font-size: 14px;
+    text-align: center;
   }
 }/*# sourceMappingURL=styles.css.map */

@@ -78,32 +78,48 @@ const downloadCountryAPI = (query) => {
     .then((data) => {
       createCountryData(data);
     })
-    .catch(() => countryNotFound());
+    .catch((err) => console.error(`Error ${err}`));
 };
 
 const eraseData = () => (countriesWrapper.innerHTML = '');
 
 const createCountryData = (countries) => {
   eraseData();
-  for (const el of countries) {
-    const { flags, name, coatOfArms, region, subregion, area, maps, currencies, population, tld, capital, languages } =
-      el;
-    const newCountry = new newEntry(
-      flags,
-      name,
-      coatOfArms,
-      region,
-      subregion,
-      area,
-      maps,
-      currencies,
-      population,
-      tld,
-      capital,
-      languages
-    );
-    // console.log(newCountry);
-    createCountryView(newCountry);
+  if (countries.message == 'Not Found') {
+    countryNotFound();
+  } else {
+    for (const el of countries) {
+      const {
+        flags,
+        name,
+        coatOfArms,
+        region,
+        subregion,
+        area,
+        maps,
+        currencies,
+        population,
+        tld,
+        capital,
+        languages,
+      } = el;
+      const newCountry = new newEntry(
+        flags,
+        name,
+        coatOfArms,
+        region,
+        subregion,
+        area,
+        maps,
+        currencies,
+        population,
+        tld,
+        capital,
+        languages
+      );
+      // console.log(newCountry);
+      createCountryView(newCountry);
+    }
   }
 };
 
